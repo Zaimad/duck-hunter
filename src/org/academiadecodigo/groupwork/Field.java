@@ -1,6 +1,7 @@
 package org.academiadecodigo.groupwork;
 
 import org.academiadecodigo.groupwork.graphics.Canvas;
+import org.academiadecodigo.groupwork.graphics.Rectangle;
 import org.academiadecodigo.groupwork.pictures.Picture;
 
 public class Field {
@@ -8,7 +9,8 @@ public class Field {
     //===============================PROPERTIES===============================//
 
 
-    private Picture background;
+    //private Picture background;
+    private Rectangle background;
 
     public final static int PADDING = 10;
 
@@ -20,7 +22,8 @@ public class Field {
 
 
     public Field(int width, int height, String backgroundImage){
-        background = new Picture(width, height, backgroundImage);
+        //background = new Picture(width, height, backgroundImage);
+        background = new Rectangle(PADDING,PADDING,width,height);
         this.width = width;
         this.height = height;
     }
@@ -28,6 +31,9 @@ public class Field {
 
     //===============================METHODS===============================//
 
+    public void draw() {
+        background.draw();
+    }
 
     //Getters.
     public int getHeight() {
@@ -37,4 +43,13 @@ public class Field {
     public int getWidth() {
         return width + PADDING;
     }
+
+    public int getX() {
+        return PADDING;
+    }
+
+    public int getY() {
+        return PADDING;
+    }
+
 }

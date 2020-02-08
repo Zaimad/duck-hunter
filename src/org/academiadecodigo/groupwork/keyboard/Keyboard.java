@@ -1,6 +1,6 @@
 package org.academiadecodigo.groupwork.keyboard;
 
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.academiadecodigo.groupwork.graphics.Canvas;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

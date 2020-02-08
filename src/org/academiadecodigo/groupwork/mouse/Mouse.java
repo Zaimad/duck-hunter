@@ -1,6 +1,6 @@
 package org.academiadecodigo.groupwork.mouse;
 
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.academiadecodigo.groupwork.graphics.Canvas;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
