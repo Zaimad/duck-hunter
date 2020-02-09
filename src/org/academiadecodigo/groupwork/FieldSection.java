@@ -27,13 +27,56 @@ public class FieldSection {
 
     //===============================METHODS===============================//
 
+    public int getTopLeftX() {
+    	return xTopLeft;
+    }
+
+    public int getTopLeftY() {
+    	return yTopLeft;
+    }
+
+    public int getHitboxTopLeftX() {
+    	return xInnerTopLeft;
+    }
+
+    public int getHitboxTopLeftY() {
+    	return yInnerTopLeft;
+    }
+
+    public int getImageWidth() {
+    	return width;
+    }
+
+    public int getImageHeight() {
+    	return height;
+    }
+
+    public int getHitboxWidth() {
+    	return innerWidth;
+    }
+
+    public int getHitboxHeight() {
+    	return innerHeight;
+    }
+
+    //Use this method in the constructor OR an init() method, maybe both if in doubt
+    public void setNewInnerHitbox(int dx, int dy) {
+    	xInnerTopLeft = xTopLeft + dx;
+    	yInnerTopLeft = yTopLeft + dy;
+    }
+
+
+    //Method to compare if a point (x,y) is inside the HITBOX
     public boolean compareHitbox(int x, int y) {
     	if (x <= xInnerTopLeft + innerWidth && x >= xInnerTopLeft && y <= yInnerTopLeft + innerHeight && y >= yInnerTopLeft)
     		return true;
     	else return false;
     }
 
-
+    //This method MUST move BOTH the IMAGE AND HITBOX positions
+    public void updatePosition(int x, int y) {
+    	// NYI
+    }
 
 
 

@@ -8,8 +8,7 @@ public class Target extends FieldSection {
 //===============================PROPERTIES===============================//
 
     //Coordinates.
-    private int x;
-    private int y;
+    //These are in the superclass, FieldSection
 
     //Status.
     private boolean isDead;
@@ -42,12 +41,12 @@ public class Target extends FieldSection {
 
     //Getters.
     public int getX() {
-        return x;
+        return getTopLeftX();
     }
 
 
     public int getY() {
-        return y;
+        return getTopLeftY();
     }
 
 
