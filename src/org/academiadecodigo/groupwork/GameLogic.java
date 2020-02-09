@@ -32,6 +32,10 @@ public class GameLogic {
             // Pause for a while
             Thread.sleep(delay);
 
+            //resolveMouseEvents();
+
+            //resolveKeyboardEvents();
+
             //moveAllTargets();
 
         }

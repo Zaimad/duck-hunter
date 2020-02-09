@@ -5,7 +5,9 @@ public class FieldSection {
     //===============================PROPERTIES===============================//
 
     private int xTopLeft, yTopLeft;
-    private int width, height;
+    private int xInnerTopLeft, yInnerTopLeft; //Used for the actual hitbox calculations
+    private int width, height; //Used for the IMAGE box, not the hitbox.
+    private int innerWidth, innerHeight; //Used for the hitbox calculations
     private Field field;
 
 
@@ -25,7 +27,11 @@ public class FieldSection {
 
     //===============================METHODS===============================//
 
-
+    public boolean compareHitbox(int x, int y) {
+    	if (x <= xInnerTopLeft + innerWidth && x >= xInnerTopLeft && y <= yInnerTopLeft + innerHeight && y >= yInnerTopLeft)
+    		return true;
+    	else return false;
+    }
 
 
 
