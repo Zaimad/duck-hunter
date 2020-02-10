@@ -4,9 +4,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Field test = new Field(400,300, "Ola mae");
+        GameLogic gl = new GameLogic();
 
-        test.draw();
+        gl.init();
+
+        try {
+            gl.start();
+        } catch (Exception e) {
+            System.out.println("Process interrupted. Ending game...");
+        } finally {
+            System.out.println(" < Game Over > ");
+        }
+
 
     }
 

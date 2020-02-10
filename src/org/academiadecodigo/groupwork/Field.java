@@ -31,6 +31,12 @@ public class Field {
 
     //===============================METHODS===============================//
 
+
+    public void init() {
+        draw();
+    }
+
+
     public void draw() {
         background.draw();
     }
