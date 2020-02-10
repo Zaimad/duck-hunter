@@ -1,6 +1,8 @@
 package org.academiadecodigo.groupwork;
 
+import org.academiadecodigo.groupwork.targets.Duck;
 import org.academiadecodigo.groupwork.targets.Target;
+import org.academiadecodigo.groupwork.targets.TargetFactory;
 
 import java.util.ArrayList;
 
@@ -27,9 +29,12 @@ public class GameLogic {
 
         field.init();
 
-        //cars = new Car[manufacturedCars];
+        generateStartingTargets();
         //collisionDetector = new CollisionDetector(cars);
 
+        //New test targets below!
+        targets.add(new Duck(field,10,10));
+        targets.add(new Duck(field, 400, 300));
 
 
     }
@@ -55,5 +60,13 @@ public class GameLogic {
         }
 
     }
+
+
+    private void generateStartingTargets() {
+        TargetFactory.generate();
+    }
+
+
+
 
 }

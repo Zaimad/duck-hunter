@@ -23,6 +23,7 @@ public class Field {
 
     public Field(int width, int height, String backgroundImage){
         //background = new Picture(width, height, backgroundImage);
+        //background.translate(PADDING,PADDING);
         background = new Rectangle(PADDING,PADDING,width,height);
         this.width = width;
         this.height = height;
