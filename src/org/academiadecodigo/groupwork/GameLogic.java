@@ -22,7 +22,7 @@ public class GameLogic {
     public GameLogic() {
         field = new Field(800,600,"/org/academiadecodigo/groupwork/images/background.png"); //TODO: implement background image
         targets = new ArrayList<>();
-        player = new PlayerInterface(field);
+
 
 
 
@@ -44,8 +44,8 @@ public class GameLogic {
         targets.add(new Duck(field, 400, 300));
 
         //Player Interface
+        player = new PlayerInterface(field);
         player.initiateListeners();
-
     }
 
     /**
@@ -61,6 +61,7 @@ public class GameLogic {
             Thread.sleep(delay);
 
             //resolveMouseEvents();
+
 
             //resolveKeyboardEvents();
 

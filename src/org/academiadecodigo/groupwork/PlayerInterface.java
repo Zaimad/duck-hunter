@@ -50,6 +50,7 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
         crossHair.draw();
     }
 
+
     //Keyboard events.
     @Override
     public void keyPressed(KeyboardEvent e) {
@@ -64,6 +65,19 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
     //Mouse events.
     @Override
     public void mouseClicked(MouseEvent e) {
+        int x = (int) e.getX()-crossHair.getX()-(crossHair.getWidth()/2);
+        int y = (int) (e.getY()-crossHair.getY()-(crossHair.getHeight()*1.5));
+        int dx = crossHair.getWidth()/4;
+        int dy = crossHair.getHeight()/4;
+        System.out.println("x: " + crossHair.getX() + " y: " + crossHair.getY());
+
+        //Keyboard event example
+        /*
+        KeyboardEvent eventRight = new KeyboardEvent();
+        eventRight.setKey(KeyboardEvent.KEY_RIGHT);
+        eventRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        k.addEventListener(eventRight);
+         */
 
     }
 
