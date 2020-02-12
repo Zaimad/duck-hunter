@@ -2,8 +2,11 @@ package org.academiadecodigo.groupwork.targets;
 
 import org.academiadecodigo.groupwork.Field;
 import org.academiadecodigo.groupwork.FieldSection;
+import org.academiadecodigo.groupwork.Randomizer;
 import org.academiadecodigo.groupwork.graphics.Color;
 import org.academiadecodigo.groupwork.graphics.Rectangle;
+
+import static org.academiadecodigo.groupwork.Randomizer.*;
 
 public class Target extends FieldSection {
 
@@ -18,6 +21,10 @@ public class Target extends FieldSection {
     //Temp: Rectangle shapes!
     Rectangle image;
     Rectangle hitbox;
+
+    //Moving Variables!
+    TargetDirection direction;
+    Field field;
 
 //===============================CONSTRUCTOR===============================//
 
@@ -43,9 +50,37 @@ public class Target extends FieldSection {
 //===============================METHODS===============================//
 
     //Movement. TODO: IMPLEMENT METHOD.
-    public void move(){}
+    public void move(){
 
 
+        System.out.println(getX());
+        direction = direction(); //checks edges
+        updatePosition(getX()+direction.getDx(),getY()+direction.getDy());
+        image.translate(direction.getDx(),direction.getDy());
+        hitbox.translate(direction.getDx(),direction.getDy());
+
+    }
+
+    //A method to set the directions;
+    public TargetDirection direction(){
+
+        if(getX()==10){
+            return TargetDirection.values()[randomNumber(1,5)];
+        }
+
+        if(getX()==820){ //10+field.getWidth()-image.getWidth())
+            return TargetDirection.values()[specialRandom(1,8,2,3,4)];
+        }
+
+        if(getY()==10){
+            return TargetDirection.values()[randomNumber(3,7)];
+        }
+
+
+
+        return TargetDirection.values()[specialRandom(1,8,4,5,6)];
+
+    }
 
 
     //Change status.

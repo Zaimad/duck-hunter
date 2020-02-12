@@ -15,6 +15,9 @@ public class GameLogic {
     PlayerInterface player;
     Keyboard k;
     Mouse m;
+    boolean gameOn=false;
+
+
 
     private int delay = 200; //5 actions per second @ 200
 
@@ -36,12 +39,13 @@ public class GameLogic {
 
         field.init();
 
-        generateStartingTargets();
+        //generateStartingTargets();
         //collisionDetector = new CollisionDetector(cars);
 
         //New test targets below!
-        targets.add(new Duck(field,10,10));
-        targets.add(new Duck(field, 400, 300));
+        targets.add(new Duck(field));
+        targets.add(new Duck(field));
+
 
         //Player Interface
         player.initiateListeners();
@@ -55,17 +59,24 @@ public class GameLogic {
      */
     public void start() throws InterruptedException {
 
-        while (true) {
 
+
+        while(!gameOn) {
             // Pause for a while
             Thread.sleep(delay);
 
+            for (Target target : targets) {
+                target.move();
+            }
             //resolveMouseEvents();
 
             //resolveKeyboardEvents();
 
             //moveAllTargets();
-
+            int num = (int)Math.random()*100;
+            if (num==99){
+                gameOn=false;
+            }
         }
 
     }
