@@ -9,8 +9,8 @@ public class Field {
     //===============================PROPERTIES===============================//
 
 
-    //private Picture background;
-    private Rectangle background;
+    private Picture background;
+    //private Rectangle background;
 
     public final static int PADDING = 10;
 
@@ -23,8 +23,8 @@ public class Field {
 
     public Field(int width, int height, String backgroundImage){
         //background = new Picture(width, height, backgroundImage);
-        //background.translate(PADDING,PADDING);
-        background = new Rectangle(PADDING,PADDING,width,height);
+        background = new Picture(PADDING,PADDING, backgroundImage);
+        //background = new Rectangle(PADDING,PADDING,width,height);
         this.width = width;
         this.height = height;
     }

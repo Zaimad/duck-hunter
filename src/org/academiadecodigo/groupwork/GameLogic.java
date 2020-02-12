@@ -1,5 +1,7 @@
 package org.academiadecodigo.groupwork;
 
+import org.academiadecodigo.groupwork.keyboard.Keyboard;
+import org.academiadecodigo.groupwork.mouse.Mouse;
 import org.academiadecodigo.groupwork.targets.Duck;
 import org.academiadecodigo.groupwork.targets.Target;
 import org.academiadecodigo.groupwork.targets.TargetFactory;
@@ -10,13 +12,18 @@ public class GameLogic {
 
     Field field;
     ArrayList<Target> targets;
+    PlayerInterface player;
+    Keyboard k;
+    Mouse m;
 
     private int delay = 200; //5 actions per second @ 200
 
 
     public GameLogic() {
-        field = new Field(800,600,"NOIMAGEYET.png"); //TODO: implement background image
+        field = new Field(800,600,"/org/academiadecodigo/groupwork/images/background.png"); //TODO: implement background image
         targets = new ArrayList<>();
+        player = new PlayerInterface(field);
+
 
 
     }
@@ -36,6 +43,8 @@ public class GameLogic {
         targets.add(new Duck(field,10,10));
         targets.add(new Duck(field, 400, 300));
 
+        //Player Interface
+        player.initiateListeners();
 
     }
 

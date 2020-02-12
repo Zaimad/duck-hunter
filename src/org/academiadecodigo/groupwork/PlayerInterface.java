@@ -1,20 +1,22 @@
 package org.academiadecodigo.groupwork;
 
 
+import org.academiadecodigo.groupwork.keyboard.Keyboard;
 import org.academiadecodigo.groupwork.keyboard.KeyboardEvent;
+import org.academiadecodigo.groupwork.mouse.Mouse;
 import org.academiadecodigo.groupwork.mouse.MouseEvent;
+import org.academiadecodigo.groupwork.mouse.MouseEventType;
 import org.academiadecodigo.groupwork.mouse.MouseHandler;
 import org.academiadecodigo.groupwork.keyboard.KeyboardHandler;
+import org.academiadecodigo.groupwork.pictures.Picture;
 
 public class PlayerInterface extends FieldSection implements MouseHandler, KeyboardHandler {
 
 
     //===============================PROPERTIES===============================//
-
-
-
-
-
+    private Picture crossHair;
+    private Keyboard k;
+    private Mouse m;
 
 
 
@@ -24,10 +26,14 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
 
     public PlayerInterface(Field field) {
         super(field);
+        crosshair();
+        this.m = new Mouse(this);
+        this.k = new Keyboard(this);
     }
 
     public PlayerInterface(Field field, int x, int y) {
         super(field, x, y);
+        crosshair();
     }
 
 
@@ -38,6 +44,11 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
         return false;
     }
 
+    private void crosshair() {
+        crossHair = new Picture();
+        crossHair.load("/org/academiadecodigo/groupwork/images/crosshair.png");
+        crossHair.draw();
+    }
 
     //Keyboard events.
     @Override
@@ -58,7 +69,15 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        int a = crossHair.getX() ;
+        int b = crossHair.getY() ;
+        crossHair.translate(e.getX()-a-(crossHair.getWidth()/2),e.getY()-b-(crossHair.getHeight()*1.5));
+    }
 
+    public void initiateListeners() {
+        m.addEventListener(MouseEventType.MOUSE_MOVED);
+        m.addEventListener(MouseEventType.MOUSE_CLICKED);
+        //k.addEventListener(EVENT);
     }
 
 }
