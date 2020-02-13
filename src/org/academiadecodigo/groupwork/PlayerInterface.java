@@ -19,7 +19,7 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
     private Mouse m;
 
 
-
+    private boolean isMouseClicked;
 
     //===============================CONSTRUCTOR===============================//
 
@@ -44,10 +44,30 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
         return false;
     }
 
+    public boolean getIsMouseClicked() {
+        return isMouseClicked;
+    }
+
+    public boolean releaseClickLogic() {
+        return isMouseClicked = false;
+    }
+
     private void crosshair() {
         crossHair = new Picture();
         crossHair.load("/org/academiadecodigo/groupwork/images/crosshair.png");
+        //crossHair.draw();
+    }
+
+    public void draw() {
         crossHair.draw();
+    }
+
+    public int getMouseValueX() {
+        return this.getTopLeftX();
+    }
+
+    public int getMouseValueY() {
+        return this.getTopLeftY();
     }
 
     //Keyboard events.
