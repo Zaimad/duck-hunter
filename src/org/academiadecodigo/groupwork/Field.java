@@ -22,7 +22,6 @@ public class Field {
 
 
     public Field(int width, int height, String backgroundImage){
-        //background = new Picture(width, height, backgroundImage);
         background = new Picture(PADDING,PADDING, backgroundImage);
         //background = new Rectangle(PADDING,PADDING,width,height);
         this.width = width;

@@ -15,6 +15,7 @@ public class GameLogic {
     PlayerInterface player;
     Keyboard k;
     Mouse m;
+    GameState gameState;
 
     private int delay = 200; //5 actions per second @ 200
 
@@ -24,7 +25,7 @@ public class GameLogic {
         targets = new ArrayList<>();
         player = new PlayerInterface(field);
 
-
+        gameState = GameState.GAMEON; //TODO: change to menu once a menu is created
 
     }
 
@@ -60,11 +61,16 @@ public class GameLogic {
             // Pause for a while
             Thread.sleep(delay);
 
-            //resolveMouseEvents();
 
-            //resolveKeyboardEvents();
+            if (gameState == GameState.GAMEON) {
+                //resolveMouseEvents();
 
-            //moveAllTargets();
+                //resolveKeyboardEvents();
+
+                //moveAllTargets();
+            }
+
+            //Pre-end-of-cycle setups such as change in GameState
 
         }
 
@@ -75,7 +81,11 @@ public class GameLogic {
         TargetFactory.generate();
     }
 
-
+    private enum GameState {
+        MENU,
+        GAMEON,
+        GAMEOVER;
+    }
 
 
 }
