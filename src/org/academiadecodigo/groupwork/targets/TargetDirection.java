@@ -8,7 +8,8 @@ public enum TargetDirection {
     SOUTHEAST(10,10),
     SOUTH(0,10),
     SOUTHWEST(-10,10),
-    WEST(-10,0);
+    WEST(-10,0),
+    NORTHWEST(-10,-10);
 
     private int dx;
     private int dy;
@@ -25,4 +26,6 @@ public enum TargetDirection {
     public int getDy() {
         return dy;
     }
+
+
 }

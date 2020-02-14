@@ -10,7 +10,7 @@ public class Duck extends Target {
 
     public Duck(Field field) {
         //This is wrong should be in FieldSection
-        this(field, (Math.random()>0.5 ? 0 : field.getWidth()), (int) (field.getHeight()*2/3*Math.random()));//put this here temporarly
+        this(field, (Math.random()>0.5 ? 0 : 720), (int) (350*Math.random()));//put -this here temporarly
         this.direction=TargetDirection.EAST;
     }
 

@@ -2,11 +2,9 @@ package org.academiadecodigo.groupwork.targets;
 
 import org.academiadecodigo.groupwork.Field;
 import org.academiadecodigo.groupwork.FieldSection;
-import org.academiadecodigo.groupwork.Randomizer;
 import org.academiadecodigo.groupwork.graphics.Color;
 import org.academiadecodigo.groupwork.graphics.Rectangle;
 
-import static org.academiadecodigo.groupwork.Randomizer.*;
 
 public class Target extends FieldSection {
 
@@ -55,7 +53,7 @@ public class Target extends FieldSection {
 
         System.out.println(getX());
         direction = direction(); //checks edges
-        updatePosition(getX()+direction.getDx(),getY()+direction.getDy());
+        updatePosition(direction.getDx(),+direction.getDy());
         image.translate(direction.getDx(),direction.getDy());
         hitbox.translate(direction.getDx(),direction.getDy());
 
@@ -64,21 +62,101 @@ public class Target extends FieldSection {
     //A method to set the directions;
     public TargetDirection direction(){
 
-        if(getX()==10){
-            return TargetDirection.values()[randomNumber(1,5)];
+        TargetDirection newDirection = direction;
+        int yUpperEdge = 10; //Padding
+        int yDownEdge=400;   //Bottom of the green
+        int xLeftEdge=10;   //Padding
+        int xRightEdge=720; //Field.width-image.getWidth;
+
+
+        if(getX()<=xLeftEdge){ //Left border
+
+
+
+            while(newDirection.getDx()==-10){ //must return direction that doesn't decrease X
+
+                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+            }
+
+            if (getY() <= yUpperEdge) {
+
+                while (newDirection.getDy() == -10 && newDirection.getDx()==-10) { //must return direction that doesn't decrease X
+
+                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+                }
+            }
+
+            if (getY() >= yDownEdge) {
+
+                while (newDirection.getDy() == 10 && newDirection.getDx()==-10) { //must return direction that doesn't decrease X
+
+                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+                }
+            }
+
+
+            return newDirection;
+
         }
 
-        if(getX()==820){ //10+field.getWidth()-image.getWidth())
-            return TargetDirection.values()[specialRandom(1,8,2,3,4)];
+
+        if(getX()>=xRightEdge){
+
+            while(newDirection.getDx()==10){ //the direction can't increase 10
+
+                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+            }
+
+            if (getY() <= yUpperEdge) {
+
+                while (newDirection.getDy() == -10 && newDirection.getDx()==10) { //must return direction that doesn't decrease X
+
+                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+                }
+            }
+
+            if (getY() >= yDownEdge) {
+
+                while (newDirection.getDy() == 10 && newDirection.getDx()==10) { //must return direction that doesn't decrease X
+
+                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+                }
+            }
+           return newDirection;
+
         }
 
-        if(getY()==10){
-            return TargetDirection.values()[randomNumber(3,7)];
+        if(getY()<=yUpperEdge){ //Upper corner
+
+            while(newDirection.getDy()==-10){
+
+                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+            }
+
+            return newDirection;
+
         }
 
+        if(getY()>=yDownEdge){ //Check Math
 
+            while(newDirection.getDy()==10){
 
-        return TargetDirection.values()[specialRandom(1,8,4,5,6)];
+                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
+
+            }
+
+            return newDirection;
+
+        }
+
+        return newDirection;
 
     }
 
