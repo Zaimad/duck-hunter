@@ -83,10 +83,10 @@ public class Target extends FieldSection {
 
     //Checks for edges
     private boolean isHittingWalls() {
-        int yUpperEdge = 10; //Padding
-        int yDownEdge = field.getHeight()-this.getImageHeight();   //Bottom of the green
-        int xLeftEdge = 10;   //Padding
-        int xRightEdge = field.getWidth()-this.getImageWidth(); //Field.width-image.getWidth;
+        int yUpperEdge = getFieldTopLimit();
+        int yDownEdge = getFieldBottomLimit() - this.getImageHeight();
+        int xLeftEdge = getFieldLeftLimit();
+        int xRightEdge = getFieldRightLimit() - this.getImageWidth();
 
 
         if (getX() < xLeftEdge || getX() > xRightEdge || getY() < yUpperEdge || getY() > yDownEdge) {

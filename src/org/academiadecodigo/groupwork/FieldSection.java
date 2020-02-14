@@ -59,6 +59,22 @@ public class FieldSection {
     	return innerHeight;
     }
 
+    public int getFieldRightLimit() {
+        return field.getWidth();
+    }
+
+    public int getFieldBottomLimit() {
+        return field.getHeight();
+    }
+
+    public int getFieldTopLimit() {
+        return field.getY();
+    }
+
+    public int getFieldLeftLimit() {
+        return field.getX();
+    }
+
     //Use this method in the constructor OR an init() method, maybe both if in doubt
     public void setNewInnerHitbox(int dx, int dy) {
     	xInnerTopLeft = xTopLeft + dx;
