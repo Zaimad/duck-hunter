@@ -7,7 +7,8 @@ public class PlayerMousePointer extends PlayerInterface {
         super(field);
     }
 
+    /*
     public PlayerMousePointer(Field field, int x, int y) {
         super(field, x, y);
-    }
+    } */
 }

@@ -261,6 +261,17 @@ public class Picture implements Shape, Movable {
     }
 
     /**
+     * Fucks over the original implementation for the sake of mouse capturing methods.
+     * @param dx the ACTUAL ABSOLUTE X
+     * @param dy the ACTUAL ABSOLUTE Y
+     */
+    public void translateToAbsolutePosition(double dx, double dy) {
+        x = dx;
+        y = dy;
+        Canvas.getInstance().repaint();
+    }
+
+    /**
      * Resizes this picture both horizontally and vertically.
      *
      * @param dw the amount by which to resize the width on each side

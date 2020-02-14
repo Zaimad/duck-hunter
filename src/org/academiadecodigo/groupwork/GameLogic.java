@@ -17,7 +17,9 @@ public class GameLogic {
     Mouse m;
     GameState gameState;
 
-    private int delay = 200; //5 actions per second @ 200
+    private final int YERROR = 35;
+
+    private int delay = 25; //5 actions per second @ 200
 
 
     public GameLogic() {
@@ -41,9 +43,10 @@ public class GameLogic {
         //collisionDetector = new CollisionDetector(cars);
 
         //New test targets below!
-        targets.add(new Duck(field));
-        targets.add(new Duck(field));
+        //targets.add(new Duck(field,100, 50));
+        //targets.add(new Duck(field,200,450));
 
+        generateStartingTargets();
 
         //Player Interface
         player.initiateListeners();
@@ -70,16 +73,28 @@ public class GameLogic {
             if (gameState == GameState.GAMEON) {
                 //resolveMouseEvents();
                 if (player.getIsMouseClicked()) { //The mouse was clicked and thus must be resolved
+                    System.out.println("\nMouse click resolution in progress.");
                     workingX = player.getMouseValueX();
                     workingY = player.getMouseValueY();
+                    System.out.println("Click registered: x = "+workingX+", y = "+workingY);
                     for (Target t : targets) {
+                        t.debugOutputPosition();
+                        //System.out.println(t.compareHitbox(workingX,workingY));
+                        /*
                         if (
                                 (t.getHitboxTopLeftX() <= workingX) && (workingX <= t.getHitboxTopLeftX()+t.getHitboxWidth() )
-                                && (t.getHitboxTopLeftY() <= workingY) && (workingY <= t.getHitboxTopLeftY()+t.getHitboxHeight() )
+                                && (t.getHitboxTopLeftY() <= workingY + YERROR) && (workingY <= t.getHitboxTopLeftY()+t.getHitboxHeight() + YERROR )
                         ) { //Target was hit
                             t.setDead();
+                            System.out.println("Target "+t+" hit. (on normal calc)");
+                        }
+                        //*/
+                        if (t.compareHitbox(workingX,workingY)) {
+                            t.setDead();
+                            System.out.println("Target "+t+" hit. (on compare hitbox)");
                         }
                     } //Resolved all possible targets
+                    //System.out.println("Releasing mouse");
                     player.releaseClickLogic(); //Make the mouse click be consumed.
                 }
                 //resolveKeyboardEvents();
@@ -93,6 +108,15 @@ public class GameLogic {
 
             } //End of GAMEON logic loop
 
+            else if (gameState == GameState.MENU) {
+                //Menu logic
+
+            }
+
+            else if (gameState == GameState.GAMEOVER) {
+
+            }
+
             //Pre-end-of-cycle setups such as change in GameState
 
         }
@@ -101,7 +125,9 @@ public class GameLogic {
 
 
     private void generateStartingTargets() {
-        TargetFactory.generate();
+        targets.add(TargetFactory.generate(field));
+        targets.add(TargetFactory.generate(field));
+        targets.add(TargetFactory.generate(field));
     }
 
     //Private enum to control game's logic flow

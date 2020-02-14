@@ -25,7 +25,7 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
 
 
     public PlayerInterface(Field field) {
-        super(field);
+        super(field,0,0);
         crosshair();
         this.m = new Mouse(this);
         this.k = new Keyboard(this);
@@ -41,7 +41,8 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
 
     //Shoot.
     public boolean shoot(int x, int y){
-        return false;
+        super.setAbsolutePosition(x,y);
+        return isMouseClicked;
     }
 
     public boolean getIsMouseClicked() {
@@ -84,18 +85,24 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
     //Mouse events.
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        //System.out.println("Testing mouse clicks.");
+        shoot((int) e.getX(),(int) e.getY());
+        isMouseClicked = true;
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         int a = crossHair.getX() ;
         int b = crossHair.getY() ;
-        crossHair.translate(e.getX()-a-(crossHair.getWidth()/2),e.getY()-b-(crossHair.getHeight()*1.5));
+
+        crossHair.translateToAbsolutePosition(e.getX()-13,e.getY()-35);
+        //System.out.println(e.getY()+" Y position on canvas");
+        //crossHair.translate(e.getX()-a-(crossHair.getWidth()/2),e.getY()-b-(crossHair.getHeight()*1.5));
     }
 
     public void initiateListeners() {
         m.addEventListener(MouseEventType.MOUSE_MOVED);
+        //MouseEvent click = ;
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
         //k.addEventListener(EVENT);
     }

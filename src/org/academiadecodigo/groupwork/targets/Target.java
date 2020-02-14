@@ -22,11 +22,11 @@ public class Target extends FieldSection {
 
     //Moving Variables!
     TargetDirection direction;
-    double directionChangeProbability=0.97;
+    double directionChangeProbability=0.95;
 
 //===============================CONSTRUCTOR===============================//
 
-
+    /*
     public Target(Field field) {
         super(field);
         image = new Rectangle(getX(),getY(),80,50);
@@ -34,13 +34,23 @@ public class Target extends FieldSection {
         hitbox = new Rectangle(getX()+10,getY()+10,60,30);
         hitbox.setColor(Color.DARK_GRAY);
         hitbox.fill();
-    }
+    } */
 
     public Target(Field field, int x, int y) {
         super(field, x, y);
-        image = new Rectangle(getX(),getY(),80,50);
+        image = new Rectangle(x,y,80,50);
         image.draw();
-        hitbox = new Rectangle(getX()+10,getY()+10,60,30);
+
+        setImageWidthAndHeight(80,50);
+
+        super.setAbsoluteHitboxPosition(x,y);
+
+        super.setNewInnerHitbox(0,0);
+
+        super.setInnerWidth(80);
+        super.setInnerHeight(50);
+
+        hitbox = new Rectangle(x+10,y+10,60,30);
         hitbox.setColor(Color.DARK_GRAY);
         hitbox.fill();
     }
@@ -56,10 +66,11 @@ public class Target extends FieldSection {
         if(isHittingWalls()){
             direction=direction.oppositeDirection();
         }
+        //debugOutputPosition();
 
-        updatePosition(direction.getDx(),direction.getDy());
-        image.translate(direction.getDx(),direction.getDy());
-        hitbox.translate(direction.getDx(),direction.getDy());
+        updatePosition(direction.getDx()*3,direction.getDy()*3);
+        image.translate(direction.getDx()*3,direction.getDy()*3);
+        hitbox.translate(direction.getDx()*3,direction.getDy()*3);
 
     }
 
@@ -89,7 +100,8 @@ public class Target extends FieldSection {
         int xRightEdge = getFieldRightLimit() - this.getImageWidth();
 
 
-        if (getX() < xLeftEdge || getX() > xRightEdge || getY() < yUpperEdge || getY() > yDownEdge) {
+        if (getX() + 10 <= xLeftEdge || getX() > xRightEdge
+                || getY() + 10 <= yUpperEdge || getY() > yDownEdge) {
             return true;
         }
 
@@ -100,6 +112,8 @@ public class Target extends FieldSection {
     //Change status.
     public void setDead(){
         isDead = true;
+        //image.delete();
+        hitbox.delete();
     }
 
 

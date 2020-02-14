@@ -13,11 +13,12 @@ public class FieldSection {
 
     //===============================CONSTRUCTOR===============================//
 
+    /*
     public FieldSection(Field field){
         this.field = field;
         xTopLeft = field.getX();
         yTopLeft = field.getY();
-    }
+    } */
 
     public FieldSection(Field field, int x, int y){
         this.field = field;
@@ -93,8 +94,36 @@ public class FieldSection {
     public void updatePosition(int dx, int dy) {
         xTopLeft=xTopLeft+dx;
         yTopLeft=yTopLeft+dy;
+        xInnerTopLeft=xInnerTopLeft+dx;
+        yInnerTopLeft=yInnerTopLeft+dy;
     }
 
+    public void setInnerWidth(int wide) {
+        innerWidth = wide;
+    }
+
+    public void setInnerHeight(int high) {
+        innerHeight = high;
+    }
+
+    public void setImageWidthAndHeight(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public void setAbsolutePosition(int imageX, int imageY) {
+        xTopLeft = imageX;
+        yTopLeft = imageY;
+    }
+
+    public void setAbsoluteHitboxPosition(int hitboxX, int hitboxY) {
+        xInnerTopLeft = hitboxX;
+        yInnerTopLeft = hitboxY;
+    }
+
+    public void debugOutputPosition() {
+        System.out.println("Hitbox topleft coordinates: x = "+getHitboxTopLeftX()+", y = "+getHitboxTopLeftY());
+    }
 
 
 
