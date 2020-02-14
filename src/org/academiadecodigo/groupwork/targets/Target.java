@@ -4,6 +4,7 @@ import org.academiadecodigo.groupwork.Field;
 import org.academiadecodigo.groupwork.FieldSection;
 import org.academiadecodigo.groupwork.graphics.Color;
 import org.academiadecodigo.groupwork.graphics.Rectangle;
+import org.academiadecodigo.groupwork.pictures.Picture;
 
 
 public class Target extends FieldSection {
@@ -17,8 +18,8 @@ public class Target extends FieldSection {
     private boolean isDead;
 
     //Temp: Rectangle shapes!
-    Rectangle image;
-    Rectangle hitbox;
+    Picture image;
+    //Rectangle hitbox;
 
     //Moving Variables!
     TargetDirection direction;
@@ -36,23 +37,24 @@ public class Target extends FieldSection {
         hitbox.fill();
     } */
 
-    public Target(Field field, int x, int y) {
+    public Target(Field field, int x, int y, String image) {
         super(field, x, y);
-        image = new Rectangle(x,y,80,50);
-        image.draw();
+        this.image = new Picture(90,85,image);
+        this.image.draw();
+        this.image.translateToAbsolutePosition(x,y);
 
-        setImageWidthAndHeight(80,50);
+        setImageWidthAndHeight(90,85);
 
         super.setAbsoluteHitboxPosition(x,y);
 
         super.setNewInnerHitbox(0,0);
 
-        super.setInnerWidth(80);
-        super.setInnerHeight(50);
+        super.setInnerWidth(90);
+        super.setInnerHeight(85);
 
-        hitbox = new Rectangle(x+10,y+10,60,30);
-        hitbox.setColor(Color.DARK_GRAY);
-        hitbox.fill();
+        //hitbox = new Rectangle(x+10,y+10,60,30);
+        //hitbox.setColor(Color.DARK_GRAY);
+        //hitbox.fill();
     }
 
 //===============================METHODS===============================//
@@ -70,7 +72,7 @@ public class Target extends FieldSection {
 
         updatePosition(direction.getDx()*3,direction.getDy()*3);
         image.translate(direction.getDx()*3,direction.getDy()*3);
-        hitbox.translate(direction.getDx()*3,direction.getDy()*3);
+        //hitbox.translate(direction.getDx()*3,direction.getDy()*3);
 
     }
 
@@ -112,8 +114,8 @@ public class Target extends FieldSection {
     //Change status.
     public void setDead(){
         isDead = true;
-        //image.delete();
-        hitbox.delete();
+        image.delete();
+        //hitbox.delete();
     }
 
 

@@ -14,8 +14,8 @@ public class Duck extends Target {
         this.direction=TargetDirection.EAST;
     } */
 
-    public Duck(Field field, int x, int y) {
-        super(field, x, y);
+    public Duck(Field field, int x, int y, String imagePath) {
+        super(field, x, y, imagePath);
         this.direction=TargetDirection.EAST;
     }
 

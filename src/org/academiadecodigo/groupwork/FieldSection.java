@@ -121,9 +121,11 @@ public class FieldSection {
         yInnerTopLeft = hitboxY;
     }
 
+    //DEBUG FEATURE
     public void debugOutputPosition() {
         System.out.println("Hitbox topleft coordinates: x = "+getHitboxTopLeftX()+", y = "+getHitboxTopLeftY());
     }
+
 
 
 

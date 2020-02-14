@@ -3,6 +3,7 @@ package org.academiadecodigo.groupwork;
 
 import org.academiadecodigo.groupwork.keyboard.Keyboard;
 import org.academiadecodigo.groupwork.keyboard.KeyboardEvent;
+import org.academiadecodigo.groupwork.keyboard.KeyboardEventType;
 import org.academiadecodigo.groupwork.mouse.Mouse;
 import org.academiadecodigo.groupwork.mouse.MouseEvent;
 import org.academiadecodigo.groupwork.mouse.MouseEventType;
@@ -20,6 +21,7 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
 
 
     private boolean isMouseClicked;
+    private boolean gameFlag;
 
     //===============================CONSTRUCTOR===============================//
 
@@ -59,6 +61,10 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
         //crossHair.draw();
     }
 
+    public boolean getGameFlag() {
+        return gameFlag;
+    }
+
     public void draw() {
         crossHair.draw();
     }
@@ -74,7 +80,13 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
     //Keyboard events.
     @Override
     public void keyPressed(KeyboardEvent e) {
-
+        switch (e.getKey()) {
+            case KeyboardEvent.KEY_SPACE:
+                if (gameFlag == false) gameFlag = true;
+                break;
+            case KeyboardEvent.KEY_X:
+                System.exit(0);
+        }
     }
 
     @Override
@@ -95,16 +107,27 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
         int a = crossHair.getX() ;
         int b = crossHair.getY() ;
 
-        crossHair.translateToAbsolutePosition(e.getX()-13,e.getY()-35);
+        crossHair.translateToAbsolutePosition(e.getX()-17,e.getY()-40);
         //System.out.println(e.getY()+" Y position on canvas");
         //crossHair.translate(e.getX()-a-(crossHair.getWidth()/2),e.getY()-b-(crossHair.getHeight()*1.5));
     }
 
     public void initiateListeners() {
         m.addEventListener(MouseEventType.MOUSE_MOVED);
-        //MouseEvent click = ;
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
         //k.addEventListener(EVENT);
+
+        KeyboardEvent keyPressSpace = new KeyboardEvent();
+        keyPressSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyPressSpace.setKey(KeyboardEvent.KEY_SPACE);
+        k.addEventListener(keyPressSpace);
+
+        KeyboardEvent keyPressX = new KeyboardEvent();
+        keyPressX.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyPressX.setKey(KeyboardEvent.KEY_X);
+        k.addEventListener(keyPressX);
+
+
     }
 
 }

@@ -11,6 +11,7 @@ public class Field {
 
     private Picture background;
     //private Rectangle background;
+    private Picture menuOverlay;
 
     public final static int PADDING = 10;
 
@@ -26,6 +27,9 @@ public class Field {
         //background = new Rectangle(PADDING,PADDING,width,height);
         this.width = width;
         this.height = height;
+
+        menuOverlay = new Picture(PADDING,PADDING, "org/academiadecodigo/groupwork/images/start.png");
+
     }
 
 
@@ -39,6 +43,7 @@ public class Field {
 
     public void draw() {
         background.draw();
+        menuOverlay.draw();
     }
 
     //Getters.
@@ -57,5 +62,10 @@ public class Field {
     public int getY() {
         return PADDING;
     }
+
+    public void killMenu() {
+        menuOverlay.delete();
+    }
+
 
 }
