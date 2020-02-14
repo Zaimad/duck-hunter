@@ -27,5 +27,35 @@ public enum TargetDirection {
         return dy;
     }
 
+    public TargetDirection oppositeDirection(){
+        TargetDirection opposite=null;
 
+        switch (this) {
+            case NORTH:
+                opposite = SOUTH;
+                break;
+            case NORTHEAST:
+                opposite=SOUTHWEST;
+                break;
+            case EAST:
+                opposite=WEST;
+            case SOUTHEAST:
+                opposite=NORTHWEST;
+                break;
+            case SOUTH:
+                opposite=NORTH;
+                break;
+            case SOUTHWEST:
+                opposite=NORTHEAST;
+                break;
+            case WEST:
+                opposite=EAST;
+                break;
+            case NORTHWEST:
+                opposite=SOUTHEAST;
+                break;
+        }
+
+        return opposite;
+    }
 }

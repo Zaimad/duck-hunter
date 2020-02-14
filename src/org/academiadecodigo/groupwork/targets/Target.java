@@ -22,7 +22,7 @@ public class Target extends FieldSection {
 
     //Moving Variables!
     TargetDirection direction;
-    Field field;
+    double directionChangeProbability=0.97;
 
 //===============================CONSTRUCTOR===============================//
 
@@ -51,113 +51,49 @@ public class Target extends FieldSection {
     public void move(){
 
 
-        System.out.println(getX());
-        direction = direction(); //checks edges
-        updatePosition(direction.getDx(),+direction.getDy());
+        direction = chooseDirection();
+
+        if(isHittingWalls()){
+            direction=direction.oppositeDirection();
+        }
+
+        updatePosition(direction.getDx(),direction.getDy());
         image.translate(direction.getDx(),direction.getDy());
         hitbox.translate(direction.getDx(),direction.getDy());
 
     }
 
     //A method to set the directions;
-    public TargetDirection direction(){
+    private TargetDirection chooseDirection(){
+
 
         TargetDirection newDirection = direction;
-        int yUpperEdge = 10; //Padding
-        int yDownEdge=400;   //Bottom of the green
-        int xLeftEdge=10;   //Padding
-        int xRightEdge=720; //Field.width-image.getWidth;
 
 
-        if(getX()<=xLeftEdge){ //Left border
+        if (Math.random()>directionChangeProbability){
+            newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
 
-
-
-            while(newDirection.getDx()==-10){ //must return direction that doesn't decrease X
-
-                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-            }
-
-            if (getY() <= yUpperEdge) {
-
-                while (newDirection.getDy() == -10 && newDirection.getDx()==-10) { //must return direction that doesn't decrease X
-
-                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-                }
-            }
-
-            if (getY() >= yDownEdge) {
-
-                while (newDirection.getDy() == 10 && newDirection.getDx()==-10) { //must return direction that doesn't decrease X
-
-                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-                }
-            }
-
-
-            return newDirection;
-
+            /**Can it perform u-Turns**/
         }
 
-
-        if(getX()>=xRightEdge){
-
-            while(newDirection.getDx()==10){ //the direction can't increase 10
-
-                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-            }
-
-            if (getY() <= yUpperEdge) {
-
-                while (newDirection.getDy() == -10 && newDirection.getDx()==10) { //must return direction that doesn't decrease X
-
-                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-                }
-            }
-
-            if (getY() >= yDownEdge) {
-
-                while (newDirection.getDy() == 10 && newDirection.getDx()==10) { //must return direction that doesn't decrease X
-
-                    newDirection = TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-                }
-            }
-           return newDirection;
-
-        }
-
-        if(getY()<=yUpperEdge){ //Upper corner
-
-            while(newDirection.getDy()==-10){
-
-                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-            }
-
-            return newDirection;
-
-        }
-
-        if(getY()>=yDownEdge){ //Check Math
-
-            while(newDirection.getDy()==10){
-
-                newDirection=TargetDirection.values()[(int) (Math.random() * TargetDirection.values().length)];
-
-            }
-
-            return newDirection;
-
-        }
 
         return newDirection;
+    }
 
+
+    //Checks for edges
+    private boolean isHittingWalls() {
+        int yUpperEdge = 10; //Padding
+        int yDownEdge = field.getHeight()-this.getImageHeight();   //Bottom of the green
+        int xLeftEdge = 10;   //Padding
+        int xRightEdge = field.getWidth()-this.getImageWidth(); //Field.width-image.getWidth;
+
+
+        if (getX() < xLeftEdge || getX() > xRightEdge || getY() < yUpperEdge || getY() > yDownEdge) {
+            return true;
+        }
+
+        return false;
     }
 
 
