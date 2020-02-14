@@ -74,8 +74,9 @@ public class FieldSection {
     }
 
     //This method MUST move BOTH the IMAGE AND HITBOX positions
-    public void updatePosition(int x, int y) {
-    	// NYI
+    public void updatePosition(int dx, int dy) {
+        xTopLeft=xTopLeft+dx;
+        yTopLeft=yTopLeft+dy;
     }
 
 

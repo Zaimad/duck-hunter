@@ -37,12 +37,13 @@ public class GameLogic {
 
         field.init();
 
-        generateStartingTargets();
+        //generateStartingTargets();
         //collisionDetector = new CollisionDetector(cars);
 
         //New test targets below!
-        targets.add(new Duck(field,10,10));
-        targets.add(new Duck(field, 400, 300));
+        targets.add(new Duck(field));
+        targets.add(new Duck(field));
+
 
         //Player Interface
         player.initiateListeners();
@@ -59,7 +60,6 @@ public class GameLogic {
         player.draw();
         int workingX = 0;
         int workingY = 0;
-
 
         while (true) {
 
