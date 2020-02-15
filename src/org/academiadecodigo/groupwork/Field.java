@@ -12,6 +12,7 @@ public class Field {
     private Picture background;
     //private Rectangle background;
     private Picture menuOverlay;
+    private Picture gameOverOverlay;
 
     public final static int PADDING = 10;
 
@@ -29,6 +30,7 @@ public class Field {
         this.height = height;
 
         menuOverlay = new Picture(PADDING,PADDING, "org/academiadecodigo/groupwork/images/start.png");
+        gameOverOverlay = new Picture(PADDING,PADDING, "org/academiadecodigo/groupwork/images/gameover.png");
 
     }
 
@@ -44,6 +46,10 @@ public class Field {
     public void draw() {
         background.draw();
         menuOverlay.draw();
+    }
+
+    public void drawGameOver() {
+        gameOverOverlay.draw();
     }
 
     //Getters.
