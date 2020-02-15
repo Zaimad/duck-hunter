@@ -1,7 +1,5 @@
 package org.academiadecodigo.groupwork;
 
-import org.academiadecodigo.groupwork.graphics.Canvas;
-import org.academiadecodigo.groupwork.graphics.Rectangle;
 import org.academiadecodigo.groupwork.pictures.Picture;
 
 public class Field {
@@ -29,8 +27,8 @@ public class Field {
         this.width = width;
         this.height = height;
 
-        menuOverlay = new Picture(PADDING,PADDING, "org/academiadecodigo/groupwork/images/start.png");
-        gameOverOverlay = new Picture(PADDING,PADDING, "org/academiadecodigo/groupwork/images/gameover.png");
+        menuOverlay = new Picture(PADDING,PADDING, "resources/start.png");
+        gameOverOverlay = new Picture(PADDING,PADDING, "resources/gameover.png");
 
     }
 

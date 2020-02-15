@@ -4,9 +4,9 @@
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="MyProject" />
+        <property name="project.name" value="DuckHunter" />
         <property name="src.dir" value="src" />
-        <property name="main.class" value="org.academiadecodigo.myproject.Main" />
+        <property name="main.class" value="org.academiadecodigo.groupwork.Main" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />

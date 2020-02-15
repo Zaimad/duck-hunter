@@ -57,7 +57,7 @@ public class PlayerInterface extends FieldSection implements MouseHandler, Keybo
 
     private void crosshair() {
         crossHair = new Picture();
-        crossHair.load("/org/academiadecodigo/groupwork/images/crosshair.png");
+        crossHair.load("resources/crosshair.png");
         //crossHair.draw();
     }
 

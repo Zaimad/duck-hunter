@@ -40,7 +40,7 @@ public class Target extends FieldSection {
     public Target(Field field, int x, int y, String image) {
         super(field, x, y);
         this.image = new Picture(90,85,image);
-        this.image.draw();
+
         this.image.translateToAbsolutePosition(x,y);
 
         setImageWidthAndHeight(90,85);
@@ -58,6 +58,12 @@ public class Target extends FieldSection {
     }
 
 //===============================METHODS===============================//
+
+    public void draw() {
+        image.draw();
+    }
+
+
 
     //Movement. TODO: IMPLEMENT METHOD.
     public void move(){

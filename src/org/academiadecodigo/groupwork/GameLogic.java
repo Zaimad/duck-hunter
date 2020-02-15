@@ -31,7 +31,7 @@ public class GameLogic {
 
 
     public GameLogic() {
-        field = new Field(800,600,"/org/academiadecodigo/groupwork/images/background_final.jpg");
+        field = new Field(800,600, "resources/background_final.jpg");
         targets = new ArrayList<>();
         player = new PlayerInterface(field);
         removalQueue = new ArrayList<>();
@@ -90,6 +90,10 @@ public class GameLogic {
 
 
             if (gameState == GameState.GAMEON) {
+
+                for (Target t : targets) {
+                    t.draw();
+                }
 
                 timeToLose.update(String.valueOf("Time to lose: "+ (timer/20)));
 
