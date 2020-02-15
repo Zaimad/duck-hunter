@@ -5,6 +5,11 @@ import org.academiadecodigo.groupwork.mouse.Mouse;
 import org.academiadecodigo.groupwork.targets.Target;
 import org.academiadecodigo.groupwork.targets.TargetFactory;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import java.io.File;
 import java.util.ArrayList;
 
 public class GameLogic {
@@ -18,11 +23,15 @@ public class GameLogic {
     private GameState gameState;
     private double timer = 500;
 
-    //private AudioInputStream;  //Sound, how to work it in?
-
     int score = 0;
     UserInterfaceSection uiScore;
     UserInterfaceSection timeToLose;
+
+    File music;
+
+    AudioInputStream ais;
+    Clip soundClip;
+
 
 
     private final int YERROR = 35;
@@ -59,6 +68,20 @@ public class GameLogic {
 
         //Player Interface
         player.initiateListeners();
+
+        //Music here!
+        try {
+            music = new File("resources/TheMoonDucktales.wav");
+            ais = AudioSystem.getAudioInputStream(music);
+            soundClip = (Clip) AudioSystem.getLine(new DataLine.Info(Clip.class, ais.getFormat()));
+            soundClip.open(ais);
+            soundClip.start();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } //End of music setup section...
+
 
     }
 
